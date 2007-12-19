@@ -31,32 +31,34 @@ namespace KmlSuperOverlay
             this.pbPyramid = new System.Windows.Forms.PictureBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.anchorSelectCtrl1 = new KmlSuperOverlay.AnchorSelectCtrl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.sldLevel = new System.Windows.Forms.TrackBar();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.imageFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pbAlign = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pbox256 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pbAlign = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.imageFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbPyramid)).BeginInit();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sldLevel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPage4.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAlign)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbox256)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbAlign)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pbPyramid
@@ -88,8 +90,10 @@ namespace KmlSuperOverlay
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage3.Controls.Add(this.label2);
+            this.tabPage3.Controls.Add(this.anchorSelectCtrl1);
             this.tabPage3.Controls.Add(this.label1);
-            this.tabPage3.Controls.Add(this.trackBar1);
+            this.tabPage3.Controls.Add(this.sldLevel);
             this.tabPage3.Controls.Add(this.pictureBox2);
             this.tabPage3.Controls.Add(this.pbPyramid);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -98,6 +102,45 @@ namespace KmlSuperOverlay
             this.tabPage3.Size = new System.Drawing.Size(631, 431);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Pyramid Tiling";
+            // 
+            // anchorSelectCtrl1
+            // 
+            this.anchorSelectCtrl1.AnchorPos = KmlSuperOverlay.AnchorOpts.BottomRight;
+            this.anchorSelectCtrl1.GapSize = new System.Drawing.SizeF(2F, 2F);
+            this.anchorSelectCtrl1.HighlightColor = System.Drawing.Color.Yellow;
+            this.anchorSelectCtrl1.Location = new System.Drawing.Point(417, 305);
+            this.anchorSelectCtrl1.Name = "anchorSelectCtrl1";
+            this.anchorSelectCtrl1.Size = new System.Drawing.Size(26, 23);
+            this.anchorSelectCtrl1.TabIndex = 6;
+            this.anchorSelectCtrl1.Text = "anchorSelectCtrl1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(369, 269);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(33, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Level";
+            // 
+            // sldLevel
+            // 
+            this.sldLevel.Location = new System.Drawing.Point(408, 265);
+            this.sldLevel.Minimum = 1;
+            this.sldLevel.Name = "sldLevel";
+            this.sldLevel.Size = new System.Drawing.Size(217, 45);
+            this.sldLevel.TabIndex = 4;
+            this.sldLevel.Value = 1;
+            this.sldLevel.Scroll += new System.EventHandler(this.sldLevel_Scroll);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.pictureBox2.Location = new System.Drawing.Point(368, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(256, 256);
+            this.pictureBox2.TabIndex = 3;
+            this.pictureBox2.TabStop = false;
             // 
             // tabPage4
             // 
@@ -111,23 +154,17 @@ namespace KmlSuperOverlay
             this.tabPage4.Text = "Georeference";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // menuStrip1
+            // pbAlign
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.imageFileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(640, 24);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // imageFileToolStripMenuItem
-            // 
-            this.imageFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadToolStripMenuItem});
-            this.imageFileToolStripMenuItem.Name = "imageFileToolStripMenuItem";
-            this.imageFileToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.imageFileToolStripMenuItem.Text = "Image File";
+            this.pbAlign.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbAlign.BackColor = System.Drawing.Color.Gold;
+            this.pbAlign.Location = new System.Drawing.Point(0, 0);
+            this.pbAlign.Name = "pbAlign";
+            this.pbAlign.Size = new System.Drawing.Size(363, 425);
+            this.pbAlign.TabIndex = 4;
+            this.pbAlign.TabStop = false;
             // 
             // tabControl1
             // 
@@ -173,27 +210,6 @@ namespace KmlSuperOverlay
             this.tabPage2.Text = "Purple";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.pictureBox2.Location = new System.Drawing.Point(368, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(256, 256);
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pbAlign
-            // 
-            this.pbAlign.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbAlign.BackColor = System.Drawing.Color.Gold;
-            this.pbAlign.Location = new System.Drawing.Point(0, 0);
-            this.pbAlign.Name = "pbAlign";
-            this.pbAlign.Size = new System.Drawing.Size(363, 425);
-            this.pbAlign.TabIndex = 4;
-            this.pbAlign.TabStop = false;
-            // 
             // pictureBox4
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.MediumOrchid;
@@ -203,28 +219,39 @@ namespace KmlSuperOverlay
             this.pictureBox4.TabIndex = 3;
             this.pictureBox4.TabStop = false;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.imageFileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(640, 24);
+            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // imageFileToolStripMenuItem
+            // 
+            this.imageFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadToolStripMenuItem});
+            this.imageFileToolStripMenuItem.Name = "imageFileToolStripMenuItem";
+            this.imageFileToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.imageFileToolStripMenuItem.Text = "Image File";
+            // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.loadToolStripMenuItem.Text = "Load...";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
-            // trackBar1
+            // label2
             // 
-            this.trackBar1.Location = new System.Drawing.Point(408, 265);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(217, 45);
-            this.trackBar1.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(369, 269);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Level";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(369, 305);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Anchor";
             // 
             // Form1
             // 
@@ -241,17 +268,17 @@ namespace KmlSuperOverlay
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sldLevel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage4.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAlign)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbox256)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbAlign)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,8 +300,10 @@ namespace KmlSuperOverlay
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar sldLevel;
         private System.Windows.Forms.Label label1;
+        private AnchorSelectCtrl anchorSelectCtrl1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
