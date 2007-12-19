@@ -3,16 +3,35 @@ Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual C# Express 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KmlSuperOverlay", "KmlSuperOverlay\KmlSuperOverlay.csproj", "{3A2A12FC-F59E-4A12-9095-8F80051F0982}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core (SAS)", "..\Dev\SAS\Core\Core\Core (SAS).csproj", "{9583C2EB-95C6-451B-A553-8EFEC7B3A134}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{59129078-7B12-4198-B93E-0AA08D0BB7ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Library|Any CPU = Library|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3A2A12FC-F59E-4A12-9095-8F80051F0982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A2A12FC-F59E-4A12-9095-8F80051F0982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A2A12FC-F59E-4A12-9095-8F80051F0982}.Library|Any CPU.ActiveCfg = Release|Any CPU
+		{3A2A12FC-F59E-4A12-9095-8F80051F0982}.Library|Any CPU.Build.0 = Release|Any CPU
 		{3A2A12FC-F59E-4A12-9095-8F80051F0982}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A2A12FC-F59E-4A12-9095-8F80051F0982}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9583C2EB-95C6-451B-A553-8EFEC7B3A134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9583C2EB-95C6-451B-A553-8EFEC7B3A134}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9583C2EB-95C6-451B-A553-8EFEC7B3A134}.Library|Any CPU.ActiveCfg = Library|Any CPU
+		{9583C2EB-95C6-451B-A553-8EFEC7B3A134}.Library|Any CPU.Build.0 = Library|Any CPU
+		{9583C2EB-95C6-451B-A553-8EFEC7B3A134}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9583C2EB-95C6-451B-A553-8EFEC7B3A134}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59129078-7B12-4198-B93E-0AA08D0BB7ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59129078-7B12-4198-B93E-0AA08D0BB7ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59129078-7B12-4198-B93E-0AA08D0BB7ED}.Library|Any CPU.ActiveCfg = Release|Any CPU
+		{59129078-7B12-4198-B93E-0AA08D0BB7ED}.Library|Any CPU.Build.0 = Release|Any CPU
+		{59129078-7B12-4198-B93E-0AA08D0BB7ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59129078-7B12-4198-B93E-0AA08D0BB7ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
