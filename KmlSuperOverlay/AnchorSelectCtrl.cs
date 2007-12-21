@@ -9,11 +9,11 @@ namespace KmlSuperOverlay
 {
     public class AnchorSelectCtrl : Control
     {
-        public event GenericEventHandler<AnchorOpts> AnchorPosChanged;
+        public event GenericEventHandler<ContentAlignment> AnchorPosChanged;
         RectangleF tl, tc, tr, ml, mc, mr, bl, bc, br;
-        
-        private AnchorOpts m_AnchorPos = AnchorOpts.TopLeft;
-        public AnchorOpts AnchorPos
+
+        private ContentAlignment m_AnchorPos = ContentAlignment.TopLeft;
+        public ContentAlignment AnchorPos
         {
             get
             {
@@ -24,7 +24,7 @@ namespace KmlSuperOverlay
                 m_AnchorPos = value;
                 if (AnchorPosChanged != null)
                 {
-                    AnchorPosChanged(this, new GenericEventArgs<AnchorOpts>(m_AnchorPos));
+                    AnchorPosChanged(this, new GenericEventArgs<ContentAlignment>(m_AnchorPos));
                 }
                 Invalidate();
             }
@@ -61,41 +61,41 @@ namespace KmlSuperOverlay
         {
             if (new Region(tl).IsVisible(e.Location))
             {
-                AnchorPos = AnchorOpts.TopLeft; return;
+                AnchorPos = ContentAlignment.TopLeft; return;
             }
             if (new Region(tc).IsVisible(e.Location))
             {
-                AnchorPos = AnchorOpts.TopCenter; return;
+                AnchorPos = ContentAlignment.TopCenter; return;
             }
             if (new Region(tr).IsVisible(e.Location))
             {
-                AnchorPos = AnchorOpts.TopRight; return;
+                AnchorPos = ContentAlignment.TopRight; return;
             }
 
             if (new Region(ml).IsVisible(e.Location))
             {
-                AnchorPos = AnchorOpts.MiddleLeft; return;
+                AnchorPos = ContentAlignment.MiddleLeft; return;
             }
             if (new Region(mc).IsVisible(e.Location))
             {
-                AnchorPos = AnchorOpts.MiddleCenter; return;
+                AnchorPos = ContentAlignment.MiddleCenter; return;
             }
             if (new Region(mr).IsVisible(e.Location))
             {
-                AnchorPos = AnchorOpts.MiddleRight; return;
+                AnchorPos = ContentAlignment.MiddleRight; return;
             }
 
             if (new Region(bl).IsVisible(e.Location))
             {
-                AnchorPos = AnchorOpts.BottomLeft; return;
+                AnchorPos = ContentAlignment.BottomLeft; return;
             }
             if (new Region(bc).IsVisible(e.Location))
             {
-                AnchorPos = AnchorOpts.BottomCenter; return;
+                AnchorPos = ContentAlignment.BottomCenter; return;
             }
             if (new Region(br).IsVisible(e.Location))
             {
-                AnchorPos = AnchorOpts.BottomRight; return;
+                AnchorPos = ContentAlignment.BottomRight; return;
             }
 
             base.OnMouseClick(e);
@@ -119,20 +119,20 @@ namespace KmlSuperOverlay
             bc = new RectangleF(wdInc, htInc * 2, bs.Width, bs.Height);
             br = new RectangleF(wdInc * 2, htInc * 2, bs.Width, bs.Height);
 
-            DrawRect(e.Graphics, AnchorOpts.TopLeft, tl);
-            DrawRect(e.Graphics, AnchorOpts.TopCenter, tc);
-            DrawRect(e.Graphics, AnchorOpts.TopRight, tr);
-            DrawRect(e.Graphics, AnchorOpts.MiddleLeft, ml);
-            DrawRect(e.Graphics, AnchorOpts.MiddleCenter, mc);
-            DrawRect(e.Graphics, AnchorOpts.MiddleRight, mr);
-            DrawRect(e.Graphics, AnchorOpts.BottomLeft, bl);
-            DrawRect(e.Graphics, AnchorOpts.BottomCenter, bc);
-            DrawRect(e.Graphics, AnchorOpts.BottomRight, br);
+            DrawRect(e.Graphics, ContentAlignment.TopLeft, tl);
+            DrawRect(e.Graphics, ContentAlignment.TopCenter, tc);
+            DrawRect(e.Graphics, ContentAlignment.TopRight, tr);
+            DrawRect(e.Graphics, ContentAlignment.MiddleLeft, ml);
+            DrawRect(e.Graphics, ContentAlignment.MiddleCenter, mc);
+            DrawRect(e.Graphics, ContentAlignment.MiddleRight, mr);
+            DrawRect(e.Graphics, ContentAlignment.BottomLeft, bl);
+            DrawRect(e.Graphics, ContentAlignment.BottomCenter, bc);
+            DrawRect(e.Graphics, ContentAlignment.BottomRight, br);
 
             base.OnPaint(e);
         }
 
-        private void DrawRect(Graphics graphics, AnchorOpts anchor, RectangleF r)
+        private void DrawRect(Graphics graphics, ContentAlignment anchor, RectangleF r)
         {
             if (m_AnchorPos == anchor)
             {
@@ -145,10 +145,7 @@ namespace KmlSuperOverlay
         }
     }
 
-    public enum AnchorOpts
-    {
-        TopLeft, TopCenter, TopRight,
-        MiddleLeft, MiddleCenter, MiddleRight,
-        BottomLeft, BottomCenter, BottomRight
-    }
+
+
+   
 }

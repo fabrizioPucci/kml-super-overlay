@@ -1,3 +1,4 @@
+using System.Drawing;
 namespace KmlSuperOverlay
 {
     partial class Form1
@@ -28,10 +29,9 @@ namespace KmlSuperOverlay
         /// </summary>
         private void InitializeComponent()
         {
-            this.pbPyramid = new System.Windows.Forms.PictureBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.anchorSelectCtrl1 = new KmlSuperOverlay.AnchorSelectCtrl();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.sldLevel = new System.Windows.Forms.TrackBar();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -45,8 +45,12 @@ namespace KmlSuperOverlay
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.imageFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPyramid)).BeginInit();
+            this.lblTileSize = new System.Windows.Forms.Label();
+            this.btnMake = new System.Windows.Forms.Button();
+            this.tilePreviewCtrl1 = new KmlSuperOverlay.TilePreviewCtrl();
+            this.anchorSelectCtrl1 = new KmlSuperOverlay.AnchorSelectCtrl();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sldLevel)).BeginInit();
@@ -61,18 +65,6 @@ namespace KmlSuperOverlay
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pbPyramid
-            // 
-            this.pbPyramid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbPyramid.BackColor = System.Drawing.Color.GreenYellow;
-            this.pbPyramid.Location = new System.Drawing.Point(0, 0);
-            this.pbPyramid.Name = "pbPyramid";
-            this.pbPyramid.Size = new System.Drawing.Size(363, 425);
-            this.pbPyramid.TabIndex = 0;
-            this.pbPyramid.TabStop = false;
-            // 
             // tabControl2
             // 
             this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -84,40 +76,43 @@ namespace KmlSuperOverlay
             this.tabControl2.Multiline = true;
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(639, 457);
+            this.tabControl2.Size = new System.Drawing.Size(624, 457);
             this.tabControl2.TabIndex = 3;
             // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage3.Controls.Add(this.progressBar1);
+            this.tabPage3.Controls.Add(this.btnMake);
+            this.tabPage3.Controls.Add(this.lblTileSize);
+            this.tabPage3.Controls.Add(this.tilePreviewCtrl1);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.anchorSelectCtrl1);
             this.tabPage3.Controls.Add(this.label1);
             this.tabPage3.Controls.Add(this.sldLevel);
             this.tabPage3.Controls.Add(this.pictureBox2);
-            this.tabPage3.Controls.Add(this.pbPyramid);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(631, 431);
+            this.tabPage3.Size = new System.Drawing.Size(616, 431);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Pyramid Tiling";
             // 
-            // anchorSelectCtrl1
+            // label2
             // 
-            this.anchorSelectCtrl1.AnchorPos = KmlSuperOverlay.AnchorOpts.BottomRight;
-            this.anchorSelectCtrl1.GapSize = new System.Drawing.SizeF(2F, 2F);
-            this.anchorSelectCtrl1.HighlightColor = System.Drawing.Color.Yellow;
-            this.anchorSelectCtrl1.Location = new System.Drawing.Point(417, 305);
-            this.anchorSelectCtrl1.Name = "anchorSelectCtrl1";
-            this.anchorSelectCtrl1.Size = new System.Drawing.Size(26, 23);
-            this.anchorSelectCtrl1.TabIndex = 6;
-            this.anchorSelectCtrl1.Text = "anchorSelectCtrl1";
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(354, 305);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Anchor";
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(369, 269);
+            this.label1.Location = new System.Drawing.Point(354, 269);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 5;
@@ -125,7 +120,8 @@ namespace KmlSuperOverlay
             // 
             // sldLevel
             // 
-            this.sldLevel.Location = new System.Drawing.Point(408, 265);
+            this.sldLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sldLevel.Location = new System.Drawing.Point(393, 265);
             this.sldLevel.Minimum = 1;
             this.sldLevel.Name = "sldLevel";
             this.sldLevel.Size = new System.Drawing.Size(217, 45);
@@ -135,8 +131,9 @@ namespace KmlSuperOverlay
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.pictureBox2.Location = new System.Drawing.Point(368, 3);
+            this.pictureBox2.Location = new System.Drawing.Point(353, 3);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(256, 256);
             this.pictureBox2.TabIndex = 3;
@@ -149,7 +146,7 @@ namespace KmlSuperOverlay
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(631, 431);
+            this.tabPage4.Size = new System.Drawing.Size(616, 431);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Georeference";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -162,7 +159,7 @@ namespace KmlSuperOverlay
             this.pbAlign.BackColor = System.Drawing.Color.Gold;
             this.pbAlign.Location = new System.Drawing.Point(0, 0);
             this.pbAlign.Name = "pbAlign";
-            this.pbAlign.Size = new System.Drawing.Size(363, 425);
+            this.pbAlign.Size = new System.Drawing.Size(348, 425);
             this.pbAlign.TabIndex = 4;
             this.pbAlign.TabStop = false;
             // 
@@ -172,7 +169,7 @@ namespace KmlSuperOverlay
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(363, 3);
+            this.tabControl1.Location = new System.Drawing.Point(348, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(4, 2);
             this.tabControl1.SelectedIndex = 0;
@@ -225,7 +222,7 @@ namespace KmlSuperOverlay
             this.imageFileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(640, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(625, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -244,27 +241,71 @@ namespace KmlSuperOverlay
             this.loadToolStripMenuItem.Text = "Load...";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
-            // label2
+            // lblTileSize
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(369, 305);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Anchor";
+            this.lblTileSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTileSize.AutoSize = true;
+            this.lblTileSize.Location = new System.Drawing.Point(354, 352);
+            this.lblTileSize.Name = "lblTileSize";
+            this.lblTileSize.Size = new System.Drawing.Size(102, 13);
+            this.lblTileSize.TabIndex = 9;
+            this.lblTileSize.Text = "Tile Size in Original: ";
+            // 
+            // btnMake
+            // 
+            this.btnMake.Location = new System.Drawing.Point(353, 387);
+            this.btnMake.Name = "btnMake";
+            this.btnMake.Size = new System.Drawing.Size(96, 22);
+            this.btnMake.TabIndex = 10;
+            this.btnMake.Text = "Make Tiles";
+            this.btnMake.UseVisualStyleBackColor = true;
+            this.btnMake.Click += new System.EventHandler(this.btnMake_Click);
+            // 
+            // tilePreviewCtrl1
+            // 
+            this.tilePreviewCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tilePreviewCtrl1.BackColor = System.Drawing.Color.Gray;
+            this.tilePreviewCtrl1.EmptyColor = System.Drawing.Color.Purple;
+            this.tilePreviewCtrl1.Image = null;
+            this.tilePreviewCtrl1.Location = new System.Drawing.Point(0, 0);
+            this.tilePreviewCtrl1.Name = "tilePreviewCtrl1";
+            this.tilePreviewCtrl1.NumTiles = 1;
+            this.tilePreviewCtrl1.Size = new System.Drawing.Size(348, 425);
+            this.tilePreviewCtrl1.TabIndex = 8;
+            this.tilePreviewCtrl1.Text = "tilePreviewCtrl1";
+            // 
+            // anchorSelectCtrl1
+            // 
+            this.anchorSelectCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.anchorSelectCtrl1.AnchorPos = System.Drawing.ContentAlignment.BottomRight;
+            this.anchorSelectCtrl1.GapSize = new System.Drawing.SizeF(2F, 2F);
+            this.anchorSelectCtrl1.HighlightColor = System.Drawing.Color.Chocolate;
+            this.anchorSelectCtrl1.Location = new System.Drawing.Point(402, 305);
+            this.anchorSelectCtrl1.Name = "anchorSelectCtrl1";
+            this.anchorSelectCtrl1.Size = new System.Drawing.Size(26, 23);
+            this.anchorSelectCtrl1.TabIndex = 6;
+            this.anchorSelectCtrl1.Text = "anchorSelectCtrl1";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(353, 415);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(253, 10);
+            this.progressBar1.TabIndex = 11;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(640, 482);
+            this.ClientSize = new System.Drawing.Size(625, 482);
             this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(440, 410);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pbPyramid)).EndInit();
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
@@ -286,7 +327,6 @@ namespace KmlSuperOverlay
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pbPyramid;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
@@ -304,6 +344,11 @@ namespace KmlSuperOverlay
         private System.Windows.Forms.Label label1;
         private AnchorSelectCtrl anchorSelectCtrl1;
         private System.Windows.Forms.Label label2;
+        private TilePreviewCtrl tilePreviewCtrl1;
+        private System.Windows.Forms.Label lblTileSize;
+        private System.Windows.Forms.Button btnMake;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
