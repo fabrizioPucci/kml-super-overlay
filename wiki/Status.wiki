@@ -6,4 +6,4 @@ This project is currently a work in progress.
 
 = Details =
 
-In addition to the KmlSuperOverlay application, I am working on a more general Kml library for C# that uses Xml serialization of real classes rather than the Xml DOM approach or string parsing. 
+In addition to the kml-super-overlay application, I am working on a more general Kml library for C# that uses Xml serialization of real classes rather than the Xml DOM approach or string parsing. 
