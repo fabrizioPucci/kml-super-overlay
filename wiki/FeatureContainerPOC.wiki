@@ -2,7 +2,7 @@
 
 = Introduction =
 
-C# Xml Serialization typically requires a parent element for collections, but KML uses collections without that requirement. This proof of concept uses attributes applied to a List in such a way that the list element does not require a parent.
+C# Xml Serialization typically requires a parent element for collections, but KML uses collections without that requirement. This proof of concept uses attributes applied to a List in such a way that the child elements do not require a parent.
 
 = Code =
 {{{
