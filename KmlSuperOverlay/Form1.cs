@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Core.FileHandling;
 using System.IO;
 using System.Drawing.Imaging;
+using KMLib;
 
 namespace KmlSuperOverlay
 {
@@ -108,6 +109,14 @@ namespace KmlSuperOverlay
                     }
                 }
             }
+        }
+
+        private void generateKMLToolStripMenuItem_Click(object sender, EventArgs e) {
+            LoadSave ls = new LoadSave("kml");
+            string spath = ls.GetSavePath();
+            if (spath == null) return;
+            KmlTiler kt = new KmlTiler();
+            kt.TEST_MakeKML(spath);
         }
     }
 }

@@ -31,7 +31,12 @@ namespace KmlSuperOverlay
         {
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.btnMake = new System.Windows.Forms.Button();
+            this.lblTileSize = new System.Windows.Forms.Label();
+            this.tilePreviewCtrl1 = new KmlSuperOverlay.TilePreviewCtrl();
             this.label2 = new System.Windows.Forms.Label();
+            this.anchorSelectCtrl1 = new KmlSuperOverlay.AnchorSelectCtrl();
             this.label1 = new System.Windows.Forms.Label();
             this.sldLevel = new System.Windows.Forms.TrackBar();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -45,12 +50,8 @@ namespace KmlSuperOverlay
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.imageFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblTileSize = new System.Windows.Forms.Label();
-            this.btnMake = new System.Windows.Forms.Button();
-            this.tilePreviewCtrl1 = new KmlSuperOverlay.TilePreviewCtrl();
-            this.anchorSelectCtrl1 = new KmlSuperOverlay.AnchorSelectCtrl();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.generateKMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sldLevel)).BeginInit();
@@ -98,6 +99,48 @@ namespace KmlSuperOverlay
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Pyramid Tiling";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(353, 415);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(253, 10);
+            this.progressBar1.TabIndex = 11;
+            // 
+            // btnMake
+            // 
+            this.btnMake.Location = new System.Drawing.Point(353, 387);
+            this.btnMake.Name = "btnMake";
+            this.btnMake.Size = new System.Drawing.Size(96, 22);
+            this.btnMake.TabIndex = 10;
+            this.btnMake.Text = "Make Tiles";
+            this.btnMake.UseVisualStyleBackColor = true;
+            this.btnMake.Click += new System.EventHandler(this.btnMake_Click);
+            // 
+            // lblTileSize
+            // 
+            this.lblTileSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTileSize.AutoSize = true;
+            this.lblTileSize.Location = new System.Drawing.Point(354, 352);
+            this.lblTileSize.Name = "lblTileSize";
+            this.lblTileSize.Size = new System.Drawing.Size(102, 13);
+            this.lblTileSize.TabIndex = 9;
+            this.lblTileSize.Text = "Tile Size in Original: ";
+            // 
+            // tilePreviewCtrl1
+            // 
+            this.tilePreviewCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tilePreviewCtrl1.BackColor = System.Drawing.Color.Gray;
+            this.tilePreviewCtrl1.EmptyColor = System.Drawing.Color.Purple;
+            this.tilePreviewCtrl1.Image = null;
+            this.tilePreviewCtrl1.Location = new System.Drawing.Point(0, 0);
+            this.tilePreviewCtrl1.Name = "tilePreviewCtrl1";
+            this.tilePreviewCtrl1.NumTiles = 1;
+            this.tilePreviewCtrl1.Size = new System.Drawing.Size(348, 425);
+            this.tilePreviewCtrl1.TabIndex = 8;
+            this.tilePreviewCtrl1.Text = "tilePreviewCtrl1";
+            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -107,6 +150,18 @@ namespace KmlSuperOverlay
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Anchor";
+            // 
+            // anchorSelectCtrl1
+            // 
+            this.anchorSelectCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.anchorSelectCtrl1.AnchorPos = System.Drawing.ContentAlignment.BottomRight;
+            this.anchorSelectCtrl1.GapSize = new System.Drawing.SizeF(2F, 2F);
+            this.anchorSelectCtrl1.HighlightColor = System.Drawing.Color.Chocolate;
+            this.anchorSelectCtrl1.Location = new System.Drawing.Point(402, 305);
+            this.anchorSelectCtrl1.Name = "anchorSelectCtrl1";
+            this.anchorSelectCtrl1.Size = new System.Drawing.Size(26, 23);
+            this.anchorSelectCtrl1.TabIndex = 6;
+            this.anchorSelectCtrl1.Text = "anchorSelectCtrl1";
             // 
             // label1
             // 
@@ -229,7 +284,8 @@ namespace KmlSuperOverlay
             // imageFileToolStripMenuItem
             // 
             this.imageFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadToolStripMenuItem});
+            this.loadToolStripMenuItem,
+            this.generateKMLToolStripMenuItem});
             this.imageFileToolStripMenuItem.Name = "imageFileToolStripMenuItem";
             this.imageFileToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.imageFileToolStripMenuItem.Text = "Image File";
@@ -237,63 +293,16 @@ namespace KmlSuperOverlay
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.loadToolStripMenuItem.Text = "Load...";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
-            // lblTileSize
+            // generateKMLToolStripMenuItem
             // 
-            this.lblTileSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTileSize.AutoSize = true;
-            this.lblTileSize.Location = new System.Drawing.Point(354, 352);
-            this.lblTileSize.Name = "lblTileSize";
-            this.lblTileSize.Size = new System.Drawing.Size(102, 13);
-            this.lblTileSize.TabIndex = 9;
-            this.lblTileSize.Text = "Tile Size in Original: ";
-            // 
-            // btnMake
-            // 
-            this.btnMake.Location = new System.Drawing.Point(353, 387);
-            this.btnMake.Name = "btnMake";
-            this.btnMake.Size = new System.Drawing.Size(96, 22);
-            this.btnMake.TabIndex = 10;
-            this.btnMake.Text = "Make Tiles";
-            this.btnMake.UseVisualStyleBackColor = true;
-            this.btnMake.Click += new System.EventHandler(this.btnMake_Click);
-            // 
-            // tilePreviewCtrl1
-            // 
-            this.tilePreviewCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.tilePreviewCtrl1.BackColor = System.Drawing.Color.Gray;
-            this.tilePreviewCtrl1.EmptyColor = System.Drawing.Color.Purple;
-            this.tilePreviewCtrl1.Image = null;
-            this.tilePreviewCtrl1.Location = new System.Drawing.Point(0, 0);
-            this.tilePreviewCtrl1.Name = "tilePreviewCtrl1";
-            this.tilePreviewCtrl1.NumTiles = 1;
-            this.tilePreviewCtrl1.Size = new System.Drawing.Size(348, 425);
-            this.tilePreviewCtrl1.TabIndex = 8;
-            this.tilePreviewCtrl1.Text = "tilePreviewCtrl1";
-            // 
-            // anchorSelectCtrl1
-            // 
-            this.anchorSelectCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.anchorSelectCtrl1.AnchorPos = System.Drawing.ContentAlignment.BottomRight;
-            this.anchorSelectCtrl1.GapSize = new System.Drawing.SizeF(2F, 2F);
-            this.anchorSelectCtrl1.HighlightColor = System.Drawing.Color.Chocolate;
-            this.anchorSelectCtrl1.Location = new System.Drawing.Point(402, 305);
-            this.anchorSelectCtrl1.Name = "anchorSelectCtrl1";
-            this.anchorSelectCtrl1.Size = new System.Drawing.Size(26, 23);
-            this.anchorSelectCtrl1.TabIndex = 6;
-            this.anchorSelectCtrl1.Text = "anchorSelectCtrl1";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(353, 415);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(253, 10);
-            this.progressBar1.TabIndex = 11;
+            this.generateKMLToolStripMenuItem.Name = "generateKMLToolStripMenuItem";
+            this.generateKMLToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.generateKMLToolStripMenuItem.Text = "Generate KML...";
+            this.generateKMLToolStripMenuItem.Click += new System.EventHandler(this.generateKMLToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -349,6 +358,7 @@ namespace KmlSuperOverlay
         private System.Windows.Forms.Button btnMake;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ToolStripMenuItem generateKMLToolStripMenuItem;
     }
 }
 
